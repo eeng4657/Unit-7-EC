@@ -27,9 +27,25 @@ public class Address
         this.zip = add.zip;
     }
 
-    public Address(String addAsStr)
+    public Address(String addStr)
     {
-        //
+        String[] a = addStr.split(",");
+        String[] s = a[2].split(" ");
+        int index1 = a[0].indexOf(" ");
+        int index2 = a[0].indexOf("Apt");
+        streetNum = a[0].substring(0,index1);
+        if (index2 != -1)
+        {
+            streetName = a[0].substring(index1+1,index2-1);
+            apt = a[0].substring(index2);
+        }
+        else
+        {
+            streetName = a[0].substring(index1 + 1);
+        }
+        city = a[1].substring(1);
+        state = s[0];
+        zip = s[1];
     }
 
     public String getStreetNum() 
